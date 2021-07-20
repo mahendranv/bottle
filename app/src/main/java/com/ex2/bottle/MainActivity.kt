@@ -8,7 +8,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.ex2.bottle.ui.screens.MainScreen
+import com.ex2.bottle.ui.screens.main.MainScreen
 import com.ex2.bottle.ui.theme.BottleTheme
 
 class MainActivity : ComponentActivity() {

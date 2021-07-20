@@ -1,4 +1,4 @@
-package com.ex2.bottle.ui.screens
+package com.ex2.bottle.ui.screens.main
 
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -7,7 +7,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ex2.bottle.ui.nav.MainDestinations
-import com.ex2.bottle.ui.screens.main.MainListScreen
 
 @Composable
 fun MainScreen() {
@@ -16,7 +15,7 @@ fun MainScreen() {
             TopAppBar(
                 title = { Text(text = "Bottle") },
                 backgroundColor = MaterialTheme.colors.surface,
-                elevation = 0.dp
+                elevation = 2.dp
             )
         }
     ) {
@@ -36,6 +35,10 @@ private fun MainScreenInternal() {
     ) {
         composable(MainDestinations.MainList) {
             MainListScreen(navController = navController)
+        }
+
+        composable(MainDestinations.ColorAnimation) {
+            ColorAnimation(navController = navController)
         }
     }
 }
