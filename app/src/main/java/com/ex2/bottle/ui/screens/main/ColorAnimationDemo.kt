@@ -15,11 +15,20 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.ex2.bottle.ui.common.DemoScaffold
 import com.ex2.bottle.ui.theme.LIGHT_BGS
+
+
+@Composable
+fun ColorAnimationDemo(navController: NavController) {
+    DemoScaffold(title = "Color animation") {
+        ColorAnimationDemoInternal(navController = navController)
+    }
+}
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ColorAnimationDemo(navController: NavController) {
+fun ColorAnimationDemoInternal(navController: NavController) {
 
     var colorIndex by remember {
         mutableStateOf(0)

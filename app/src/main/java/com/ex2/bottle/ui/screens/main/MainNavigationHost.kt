@@ -6,19 +6,13 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.ex2.bottle.data.model.Demo
+import com.ex2.bottle.ui.common.DemoScaffold
 import com.ex2.bottle.ui.nav.MainDestinations
 
 @Composable
 fun MainScreen() {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = "Bottle") },
-                backgroundColor = MaterialTheme.colors.surface,
-                elevation = 2.dp
-            )
-        }
-    ) {
+    Surface {
         MainScreenInternal()
     }
 }

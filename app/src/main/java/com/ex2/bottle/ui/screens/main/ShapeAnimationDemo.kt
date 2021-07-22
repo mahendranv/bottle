@@ -24,10 +24,19 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ex2.bottle.ui.common.BottleSlider
 import com.ex2.bottle.ui.common.BottleSwitch
+import com.ex2.bottle.ui.common.DemoScaffold
 import com.ex2.bottle.ui.theme.LIGHT_BGS
 
+
 @Composable
-fun ShapeAnimationDemo(navController: NavController = rememberNavController()) {
+fun ShapeAnimationDemo(navController: NavController) {
+    DemoScaffold(title = "Shape animation") {
+        ShapeAnimationDemoInternal()
+    }
+}
+
+@Composable
+private fun ShapeAnimationDemoInternal() {
 
     // Preference
     val sizeRange = 100f.rangeTo(200f)
@@ -165,6 +174,6 @@ fun ShapeAnimationDemo(navController: NavController = rememberNavController()) {
 @Composable
 fun previewShapeAnimation() {
     Surface {
-        ShapeAnimationDemo()
+        ShapeAnimationDemoInternal()
     }
 }
