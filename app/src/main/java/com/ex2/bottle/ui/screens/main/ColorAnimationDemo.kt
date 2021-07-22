@@ -19,7 +19,7 @@ import com.ex2.bottle.ui.theme.LIGHT_BGS
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ColorAnimation(navController: NavController) {
+fun ColorAnimationDemo(navController: NavController) {
 
     var colorIndex by remember {
         mutableStateOf(0)

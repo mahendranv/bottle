@@ -38,7 +38,11 @@ private fun MainScreenInternal() {
         }
 
         composable(MainDestinations.ColorAnimation) {
-            ColorAnimation(navController = navController)
+            ColorAnimationDemo(navController = navController)
+        }
+
+        composable(MainDestinations.ShapeAnimation) {
+            ShapeAnimationDemo(navController = navController)
         }
     }
 }
