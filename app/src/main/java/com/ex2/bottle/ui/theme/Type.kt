@@ -12,16 +12,23 @@ import com.ex2.bottle.R
 val MW = FontFamily(
     Font(R.font.mw_regular),
     Font(R.font.mw_semi_bold, FontWeight.Bold),
+    Font(R.font.mw_x_light, FontWeight.ExtraLight),
 )
 
 // Set of Material typography styles to start with
 val Typography = Typography(
     defaultFontFamily = MW,
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = MW,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
-    )
+    ),
+
+    caption = TextStyle(
+        fontFamily = MW,
+        fontWeight = FontWeight.ExtraLight,
+        fontSize = 12.sp
+    ),
     /* Other default text styles to override
     button = TextStyle(
         fontFamily = FontFamily.Default,
