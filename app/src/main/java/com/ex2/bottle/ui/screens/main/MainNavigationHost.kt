@@ -38,5 +38,9 @@ private fun MainScreenInternal() {
         composable(MainDestinations.ShapeAnimation) {
             ShapeAnimationDemo(navController = navController)
         }
+
+        composable(MainDestinations.CustomBottomBars) {
+            BottomNavVariants()
+        }
     }
 }

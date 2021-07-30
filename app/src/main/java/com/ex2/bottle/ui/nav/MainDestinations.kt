@@ -9,6 +9,8 @@ object MainDestinations {
     const val ColorAnimation = "color-animation"
 
     const val ShapeAnimation = "shape-animation"
+
+    const val CustomBottomBars = "custom-bottom-bars"
 }
 
 val MainDemoItems = listOf(
@@ -22,5 +24,11 @@ val MainDemoItems = listOf(
         path = MainDestinations.ShapeAnimation,
         title = "Shape Animation",
         description = "Animates dimensions"
+    ),
+
+    Demo(
+        path = MainDestinations.CustomBottomBars,
+        title = "Custom bottom bars",
+        description = "Few custom bottom bars built inspired by Dribbble shots"
     )
 ).sortedBy { it.title }
