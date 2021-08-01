@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ex2.bottle.ui.common.DemoScaffold
 import com.ex2.bottle.ui.custom.BottomAppBar1
+import com.ex2.bottle.ui.custom.BottomNavBar2
 
 @Composable
 fun BottomNavVariants() {
@@ -19,8 +20,15 @@ fun BottomNavVariants() {
 
             // variant #1
             item {
-                BottomBarLineItem {
+                BottomBarLineItem("Dotted variant") {
                     BottomAppBar1(modifier = Modifier.fillMaxWidth(1f))
+                }
+            }
+
+            // Variant #2
+            item {
+                BottomBarLineItem("Alpha + scale") {
+                    BottomNavBar2()
                 }
             }
         }
@@ -28,10 +36,13 @@ fun BottomNavVariants() {
 }
 
 @Composable
-private fun BottomBarLineItem(content: @Composable () -> Unit) {
+private fun BottomBarLineItem(
+    title: String,
+    content: @Composable () -> Unit
+) {
 
     Text(
-        text = "Dotted variant",
+        text = title,
         fontStyle = MaterialTheme.typography.h4.fontStyle,
         modifier = Modifier.padding(top = 24.dp, bottom = 16.dp, start = 36.dp),
     )
