@@ -7,6 +7,7 @@ import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -51,6 +52,7 @@ private fun ShapeAnimationDemoInternal() {
 
     var instant by remember { mutableStateOf(true) }
     val spec: AnimationSpec<Dp> = TweenSpec(durationMillis = if (instant) 0 else t.toInt() * 1000)
+    val radiusSpec: AnimationSpec<Int> = TweenSpec(durationMillis = if (instant) 0 else t.toInt() * 1000)
 
     @IntRange(from = 0, to = 50)
     var radius by remember { mutableStateOf(0) }
@@ -68,7 +70,7 @@ private fun ShapeAnimationDemoInternal() {
     val animatedWidth by animateDpAsState(targetValue = width.dp, animationSpec = spec)
     val animatedRadius by animateIntAsState(
         targetValue = radius,
-        animationSpec = TweenSpec(durationMillis = if (instant) 0 else t.toInt() * 1000)
+        animationSpec = radiusSpec
     )
 
     fun applyChanges() {
@@ -77,7 +79,7 @@ private fun ShapeAnimationDemoInternal() {
         radius = r.toInt()
     }
 
-    Column(
+    LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
             .padding(24.dp),
@@ -86,85 +88,99 @@ private fun ShapeAnimationDemoInternal() {
 
         // Shape
 
-        Box(
-            Modifier
-                .fillMaxWidth()
-                .height(250.dp),
-            contentAlignment = Alignment.Center
-        ) {
+        item {
             Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(animatedRadius))
-                    .background(LIGHT_BGS[2])
-                    .height(animatedHeight)
-                    .width(animatedWidth)
+                Modifier
+                    .fillMaxWidth()
+                    .height(250.dp),
+                contentAlignment = Alignment.Center
             ) {
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(animatedRadius))
+                        .background(LIGHT_BGS[2])
+                        .height(animatedHeight)
+                        .width(animatedWidth)
+                ) {
 
-                Text(
-                    text = "${w.toInt()}X${h.toInt()} (${animatedRadius}%)",
-                    color = Color.White,
-                    fontFamily = FontFamily.Monospace,
-                    modifier = Modifier.align(
-                        Alignment.Center
+                    Text(
+                        text = "${w.toInt()}X${h.toInt()} (${r.toInt()}%)",
+                        color = Color.White,
+                        fontFamily = FontFamily.Monospace,
+                        modifier = Modifier.align(
+                            Alignment.Center
+                        )
                     )
-                )
+                }
             }
         }
 
-        BottleSwitch(
-            text = "Instant apply values",
-            checked = instant,
-            modifier = componentMargin
-        ) {
-            instant = it
-            applyChanges()
+        item {
+            BottleSwitch(
+                text = "Instant apply values",
+                checked = instant,
+                modifier = componentMargin
+            ) {
+                instant = it
+                applyChanges()
+            }
         }
 
-        BottleSlider(
-            text = "Width",
-            value = w,
-            range = sizeRange,
-            modifier = componentMargin
-        ) {
-            w = it
-            if (instant) applyChanges()
+        item {
+            BottleSlider(
+                text = "Width",
+                value = w,
+                range = sizeRange,
+                modifier = componentMargin
+            ) {
+                w = it
+                if (instant) applyChanges()
+            }
         }
 
-        BottleSlider(
-            text = "Height",
-            value = h,
-            range = sizeRange,
-            modifier = componentMargin
-        ) {
-            h = it
-            if (instant) applyChanges()
+        item {
+            BottleSlider(
+                text = "Height",
+                value = h,
+                range = sizeRange,
+                modifier = componentMargin
+            ) {
+                h = it
+                if (instant) applyChanges()
+            }
         }
 
-        BottleSlider(
-            text = "Radius",
-            value = r,
-            range = radiusRange,
-            modifier = componentMargin
-        ) {
-            r = it
-            if (instant) applyChanges()
+        item {
+            BottleSlider(
+                text = "Radius",
+                value = r,
+                range = radiusRange,
+                modifier = componentMargin
+            ) {
+                r = it
+                if (instant) applyChanges()
+            }
         }
 
         if (!instant) {
-            BottleSlider(
-                text = "Duration ${t.toInt()}s",
-                value = t,
-                range = 1f.rangeTo(5f),
-                modifier = componentMargin
-            ) {
-                t = it
+            item {
+                BottleSlider(
+                    text = "Duration ${t.toInt()}s",
+                    value = t,
+                    range = 1f.rangeTo(5f),
+                    modifier = componentMargin
+                ) {
+                    t = it
+                }
             }
 
-            OutlinedButton(
-                onClick = { applyChanges() },
-                modifier = componentMargin
-            ) {
-                Text(text = "Apply")
+            item {
+                OutlinedButton(
+                    onClick = { applyChanges() },
+                    modifier = componentMargin
+                ) {
+                    Text(text = "Apply")
+                }
             }
         }
     }
